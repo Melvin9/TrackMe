@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">TrackMe</string>
+    <string name="september">SEPTEMBER</string>
+    <string name="income">Income</string>
+    <string name="inc">5000</string>
+    <string name="expense">Expense</string>
+    <string name="balance">Balance</string>
+    <string name="recent_transactions">Recent Transactions</string>
+    <string name="empty">empty</string>
+    <string name="graph">GRAPH</string>
+    <string name="income1">INCOME</string>
+    <string name="bank">BANK</string>
+    <string name="recent_transactions1">RECENT TRANSACTIONS</string>
+    <string name="name_of_bank">Name of Bank</string>
+    <string name="address">Address</string>
+    <string name="enter_bank_details">Enter Bank Details</string>
+    <string name="enter_income">Enter Income</string>
+    <string name="next">NEXT</string>
+    <string name="choose_your_bank">Choose Your Bank</string>
+    <string name="home">Home</string>
+    <string name="ex">Example</string>
+    <string name="food">FOOD</string>
+    <string name="bill">BILL</string>
+    <string name="shop">SHOP</string>
+    <string name="health">HEALTH</string>
+    <string name="cloth">CLOTH</string>
+    <string name="travel">TRAVEL</string>
+    <string name="party">PARTY</string>
+    <string name="edu">EDUCATION</string>
+    <string name="gift">GIFT</string>
+    <string name="other">OTHER</string>
+</resources>
