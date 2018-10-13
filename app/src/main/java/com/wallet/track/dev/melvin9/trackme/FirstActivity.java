@@ -89,8 +89,10 @@ String address_bank;
                             case "OTHER":
                                 MainActivity.Bank_Name="OTHER";bankname="OTHER"; address_bank="other";MainActivity.Bank_ID="other";break;
                         }
+                        bankBtn.setText(bankname);
                     }
                 });
+
                 AlertDialog alert = builder.create();
                 alert.show();
             }

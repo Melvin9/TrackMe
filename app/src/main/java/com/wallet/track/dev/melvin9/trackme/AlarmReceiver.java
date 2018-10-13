@@ -51,7 +51,8 @@ public static String B_ID;
                 Date date1 = new Date(Long.parseLong(date));
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String formatted = format.format(date1);
-                if (formatted.compareTo(data.getTimestamp()) > 0) {
+                if (formatted.compareTo(data.getLasttime()) > 0) {
+                    db.setLastDate(formatted);
                     Pattern regEx
                             = Pattern.compile("(?:(?:Rs|RS|inr|INR)\\.?\\s?)(\\d+(:?\\,\\d+)?(\\,\\d+)?(\\.\\d{1,2})?)");
                     // Find instance of pattern matches
@@ -88,28 +89,55 @@ public static String B_ID;
                         notificationManager.createNotificationChannel(channel);
                     }
 
-                    RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.expanded_custom_push_green);
-                    notificationLayoutExpanded.setTextViewText(R.id.title1,"TRACK ME");
-                    Intent notificationIntent = new Intent(context, MainActivity.class);
 
-                    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                            | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    double balance=data.getBalance()-Double.parseDouble(amt);
+                    if(balance>1000){
+                        RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.expanded_custom_push_green);
+                        notificationLayoutExpanded.setTextViewText(R.id.title1,"TRACK ME");
+                        Intent notificationIntent = new Intent(context, MainActivity.class);
 
-                    PendingIntent intent1 = PendingIntent.getActivity(context, 0,
-                            notificationIntent, 0);
-                    notificationLayoutExpanded.setTextViewText(R.id.text1,"Amount of RS "+amt+" was debited.\nUse Track me for further details");
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "1")
-                            .setSmallIcon(R.mipmap.ic_launcher)
-                            .setContent(notificationLayoutExpanded)
-                             .setColor(context.getResources().getColor(R.color.colorGreen))
-                            .setAutoCancel(true)
-                            .setContentIntent(intent1)
-                            .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
-                            .setPriority(Notification.PRIORITY_MAX);
+                        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-                    Notification buildNotification = mBuilder.build();
-                    NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-                    mNotifyMgr.notify(001, buildNotification);
+                        PendingIntent intent1 = PendingIntent.getActivity(context, 0,
+                                notificationIntent, 0);
+                        notificationLayoutExpanded.setTextViewText(R.id.text1,"Amount of RS "+amt+" was debited.\nBalance: RS "+balance+".Use Track me for further details");
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "1")
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setContent(notificationLayoutExpanded)
+                                .setColor(context.getResources().getColor(R.color.colorGreen))
+                                .setAutoCancel(true)
+                                .setContentIntent(intent1)
+                                .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
+                                .setPriority(Notification.PRIORITY_MAX);
+
+                        Notification buildNotification = mBuilder.build();
+                        NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+                        mNotifyMgr.notify(001, buildNotification);
+                    }
+                    else{ RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.expanded_custom_push_red);
+                        notificationLayoutExpanded.setTextViewText(R.id.title2,"TRACK ME");
+                        Intent notificationIntent = new Intent(context, MainActivity.class);
+
+                        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                        PendingIntent intent1 = PendingIntent.getActivity(context, 0,
+                                notificationIntent, 0);
+                        notificationLayoutExpanded.setTextViewText(R.id.text2,"Amount of RS "+amt+" was debited.\nBalance: RS "+balance+".Use Track me for further details");
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "1")
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setContent(notificationLayoutExpanded)
+                                .setColor(context.getResources().getColor(R.color.colorGreen))
+                                .setAutoCancel(true)
+                                .setContentIntent(intent1)
+                                .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
+                                .setPriority(Notification.PRIORITY_MAX);
+
+                        Notification buildNotification = mBuilder.build();
+                        NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+                        mNotifyMgr.notify(001, buildNotification);
+                    }
                 }
 
             }

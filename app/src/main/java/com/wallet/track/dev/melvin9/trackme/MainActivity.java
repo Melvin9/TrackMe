@@ -621,7 +621,10 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         // updating income in db
         db.setdate(time);
     }
-
+    public static void updateLastDate(String time) {
+        // updating income in db
+        db.setLastDate(time);
+    }
 
     public boolean checkSmsPermission() {
 

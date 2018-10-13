@@ -20,7 +20,7 @@ public class SqlData {
     public static final String COLUMN_EDUCATION = "education";
     public static final String COLUMN_OTHERS = "others";
     public static final String COLUMN_TIMESTAMP = "timestamp";
-
+    public static final String COLUMN_LASTTIME = "banktime";
 
     private int id;
     private double income;
@@ -40,6 +40,8 @@ public class SqlData {
     private String bank;
     private String address;
     private String timestamp;
+    private String lasttime;
+
 
 
     // Create table SQL query
@@ -62,9 +64,9 @@ public class SqlData {
                     + COLUMN_OTHERS + " INTEGER DEFAULT 0,"
                     + COLUMN_BANK + " TEXT,"
                     + COLUMN_ADDRESS + " TEXT,"
-                    + COLUMN_TIMESTAMP + " DATETIME DEFAULT 0"
-                    + ")";
-    public SqlData(int id,double income, double expense, double balance, double food, double bill, double transportation, double home, double entertainment, double shopping, double cloth, double health, double gift, double education, double others, String bank, String address, String timestamp) {
+                    + COLUMN_TIMESTAMP + " DATETIME DEFAULT 0,"
+                    + COLUMN_LASTTIME + " DATETIME DEFAULT 0"+ ")";
+    public SqlData(int id,double income, double expense, double balance, double food, double bill, double transportation, double home, double entertainment, double shopping, double cloth, double health, double gift, double education, double others, String bank, String address, String timestamp,String lasttime) {
         this.id=id;
         this.income = income;
         this.expense = expense;
@@ -83,8 +85,15 @@ public class SqlData {
         this.bank = bank;
         this.address = address;
         this.timestamp = timestamp;
+        this.lasttime=lasttime;
+    }
+    public String getLasttime() {
+        return lasttime;
     }
 
+    public void setLasttime(String lasttime) {
+        this.lasttime = lasttime;
+    }
     public int getId() {
         return id;
     }

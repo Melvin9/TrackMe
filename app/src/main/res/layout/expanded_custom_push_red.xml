@@ -10,7 +10,7 @@
         android:textSize="14sp"
         android:text="Testing"
         android:layout_margin="5dp"
-        android:id="@+id/title1"
+        android:id="@+id/title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.Compat.Notification.Title"
@@ -18,11 +18,11 @@
     <TextView
         android:textSize="12sp"
         android:text="Testing is awecome"
-        android:id="@+id/text1"
+        android:id="@+id/text2"
         style="@style/TextAppearance.Compat.Notification.Title"
         android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title1"
+        android:layout_below="@id/title2"
         />
 </RelativeLayout>

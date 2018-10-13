@@ -29,4 +29,6 @@
     <string name="edu">EDUCATION</string>
     <string name="gift">GIFT</string>
     <string name="other">OTHER</string>
+    <string name="details">DETAILS</string>
+    <string name="rate_us">RATE US</string>
 </resources>

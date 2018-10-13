@@ -61,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(SqlData.TABLE_NAME,
-                new String[]{SqlData.COLUMN_ID, SqlData.COLUMN_INCOME,SqlData.COLUMN_EXPENSE,SqlData.COLUMN_BALANCE,SqlData.COLUMN_BANK,SqlData.COLUMN_ADDRESS,SqlData.COLUMN_FOOD,SqlData.COLUMN_BILLS,SqlData.COLUMN_TRANSPORTATION,SqlData.COLUMN_HOME,SqlData.COLUMN_ENTERTAINMENT,SqlData.COLUMN_SHOPPING,SqlData.COLUMN_CLOTH,SqlData.COLUMN_HEALTH,SqlData.COLUMN_GIFT,SqlData.COLUMN_EDUCATION,SqlData.COLUMN_OTHERS,SqlData.COLUMN_TIMESTAMP},
+                new String[]{SqlData.COLUMN_ID, SqlData.COLUMN_INCOME,SqlData.COLUMN_EXPENSE,SqlData.COLUMN_BALANCE,SqlData.COLUMN_BANK,SqlData.COLUMN_ADDRESS,SqlData.COLUMN_FOOD,SqlData.COLUMN_BILLS,SqlData.COLUMN_TRANSPORTATION,SqlData.COLUMN_HOME,SqlData.COLUMN_ENTERTAINMENT,SqlData.COLUMN_SHOPPING,SqlData.COLUMN_CLOTH,SqlData.COLUMN_HEALTH,SqlData.COLUMN_GIFT,SqlData.COLUMN_EDUCATION,SqlData.COLUMN_OTHERS,SqlData.COLUMN_TIMESTAMP,SqlData.COLUMN_LASTTIME},
                 SqlData.COLUMN_ID + "=?",
                 new String[]{String.valueOf(1)}, null, null, null, null);
 
@@ -88,7 +88,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getInt(cursor.getColumnIndex(SqlData.COLUMN_OTHERS)),
                 cursor.getString(cursor.getColumnIndex(SqlData.COLUMN_BANK)),
                 cursor.getString(cursor.getColumnIndex(SqlData.COLUMN_ADDRESS)),
-                cursor.getString(cursor.getColumnIndex(SqlData.COLUMN_TIMESTAMP)));
+                cursor.getString(cursor.getColumnIndex(SqlData.COLUMN_TIMESTAMP)),
+                cursor.getString(cursor.getColumnIndex(SqlData.COLUMN_LASTTIME))
+                );
 
         // close the db connection
         cursor.close();
@@ -140,6 +142,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(SqlData.COLUMN_TIMESTAMP,Time);
+        // updating row
+        db.update(SqlData.TABLE_NAME, values, SqlData.COLUMN_ID + " = ?",
+                new String[]{String.valueOf(1)});
+    }
+    public void setLastDate(String Time){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SqlData.COLUMN_LASTTIME,Time);
         // updating row
         db.update(SqlData.TABLE_NAME, values, SqlData.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(1)});
